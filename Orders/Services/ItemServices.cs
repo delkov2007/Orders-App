@@ -49,7 +49,7 @@ namespace Orders.Services
             }
             else
             {
-                itemsList.FirstOrDefault<ItemModel>().
+                itemsList.FirstOrDefault<ItemModel>().dasdas
             }
             XDocument record = new XDocument();////
 
