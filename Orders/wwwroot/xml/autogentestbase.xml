@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfItemModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ItemModel>
+    <ID>1</ID>
+    <ProductCode>100254</ProductCode>
+    <Name>Mother board NVidia 5.0 v2.0.01</Name>
+    <Quantity>10</Quantity>
+    <Price>99.99</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/motherboard.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>2</ID>
+    <ProductCode>102458</ProductCode>
+    <Name>Processor Intel Core I5</Name>
+    <Quantity>5</Quantity>
+    <Price>251.25</Price>
+    <Image>https://img.icons8.com/nolan/20/processor.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>3</ID>
+    <ProductCode>110254</ProductCode>
+    <Name>Processor AMD Athlon</Name>
+    <Quantity>10</Quantity>
+    <Price>199.99</Price>
+    <Image>https://img.icons8.com/nolan/20/processor.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>4</ID>
+    <ProductCode>150234</ProductCode>
+    <Name>Sound card</Name>
+    <Quantity>2</Quantity>
+    <Price>4.99</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>5</ID>
+    <ProductCode>130579</ProductCode>
+    <Name>DDR4 RAM 4GB Corsar</Name>
+    <Quantity>45</Quantity>
+    <Price>20</Price>
+    <Image>https://img.icons8.com/plasticine/20/000000/computer-ram.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>6</ID>
+    <ProductCode>100005</ProductCode>
+    <Name>DDR4R RAM 8GB Corsar</Name>
+    <Quantity>60</Quantity>
+    <Price>45</Price>
+    <Image>https://img.icons8.com/plasticine/20/000000/computer-ram.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>7</ID>
+    <ProductCode>110258</ProductCode>
+    <Name>HDD 1TB</Name>
+    <Quantity>13</Quantity>
+    <Price>110</Price>
+    <Image>https://img.icons8.com/officel/20/000000/hdd.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>8</ID>
+    <ProductCode>115310</ProductCode>
+    <Name>HDD 2TB</Name>
+    <Quantity>3</Quantity>
+    <Price>150</Price>
+    <Image>https://img.icons8.com/officel/20/000000/hdd.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>9</ID>
+    <ProductCode>115310</ProductCode>
+    <Name>SSD 1TB Western</Name>
+    <Quantity>2</Quantity>
+    <Price>300</Price>
+    <Image>https://img.icons8.com/officel/20/000000/hdd.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>10</ID>
+    <ProductCode>150379</ProductCode>
+    <Name>Case ATX DELL</Name>
+    <Quantity>10</Quantity>
+    <Price>20</Price>
+    <Image>https://img.icons8.com/officel/20/000000/computer.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1849429461</ID>
+    <ProductCode>1153102</ProductCode>
+    <Name>SSD 512GB Transendent</Name>
+    <Quantity>15</Quantity>
+    <Price>200</Price>
+    <Image>https://img.icons8.com/officel/20/000000/hdd.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>315655753</ID>
+    <ProductCode>200583</ProductCode>
+    <Name>Processor Intel Core I3</Name>
+    <Quantity>5</Quantity>
+    <Price>155</Price>
+    <Image>https://img.icons8.com/nolan/20/processor.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1040556123</ID>
+    <ProductCode>305212</ProductCode>
+    <Name>Processor Intel Core I7</Name>
+    <Quantity>5</Quantity>
+    <Price>400</Price>
+    <Image>https://img.icons8.com/nolan/20/processor.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1172540393</ID>
+    <ProductCode>203458</ProductCode>
+    <Name>Mother Board ATI socket 7</Name>
+    <Quantity>5</Quantity>
+    <Price>150</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/motherboard.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1812195270</ID>
+    <ProductCode>305165</ProductCode>
+    <Name>Case Middle Tower HP</Name>
+    <Quantity>5</Quantity>
+    <Price>90</Price>
+    <Image>https://img.icons8.com/officel/20/000000/computer.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>2010036107</ID>
+    <ProductCode>200365</ProductCode>
+    <Name>ATI Wonder 4bg</Name>
+    <Quantity>5</Quantity>
+    <Price>255</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>325048927</ID>
+    <ProductCode>158505</ProductCode>
+    <Name>ATI Wonder 8gb OpenGL</Name>
+    <Quantity>3</Quantity>
+    <Price>390</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>871162792</ID>
+    <ProductCode>305254</ProductCode>
+    <Name>Mouse</Name>
+    <Quantity>10</Quantity>
+    <Price>5</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>797543840</ID>
+    <ProductCode>205864</ProductCode>
+    <Name>Keyboard</Name>
+    <Quantity>20</Quantity>
+    <Price>10</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>556461824</ID>
+    <ProductCode>205456</ProductCode>
+    <Name>Speakers</Name>
+    <Quantity>5</Quantity>
+    <Price>25</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>974288968</ID>
+    <ProductCode>205425</ProductCode>
+    <Name>Monitor</Name>
+    <Quantity>3</Quantity>
+    <Price>300</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1062456750</ID>
+    <ProductCode>105000</ProductCode>
+    <Name>Mother Board Quadroooo</Name>
+    <Quantity>3</Quantity>
+    <Price>200</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/motherboard.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1606759704</ID>
+    <ProductCode>500145</ProductCode>
+    <Name>Video Card GF 8GB</Name>
+    <Quantity>3</Quantity>
+    <Price>499.99</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>2003471671</ID>
+    <ProductCode>105265</ProductCode>
+    <Name>Power 500W</Name>
+    <Quantity>5</Quantity>
+    <Price>29.99</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1801328364</ID>
+    <ProductCode>115364</ProductCode>
+    <Name>Power 1500W</Name>
+    <Quantity>0</Quantity>
+    <Price>290.50</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+  <ItemModel>
+    <ID>1420078509</ID>
+    <ProductCode>125453</ProductCode>
+    <Name>Power 2000</Name>
+    <Quantity>2</Quantity>
+    <Price>23.22</Price>
+    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
+  </ItemModel>
+</ArrayOfItemModel>

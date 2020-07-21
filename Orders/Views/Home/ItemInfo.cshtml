@@ -1,0 +1,58 @@
+﻿@model Orders.Models.ItemModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@{ 
+    var isNew = Model.Name == null ? true : false;
+    var functionality = isNew ? "Create" : "Edit";
+}
+
+<div class="jumbotron m-2 container">
+    <form action="update" method="post">
+        <fieldset>
+            @Html.HiddenFor(x => x.ID)
+            <h4>@functionality</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="ProductCode" for="product code">Product Code</label>
+                <input asp-for="ProductCode" type="number" class="form-control" id="productNumber" aria-describedby="emailHelp" placeholder="Enter Product Code Here">
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" for="product name">Name</label>
+                <input asp-for="Name" type="text" class="form-control" id="productName"  placeholder="Enter Product Name">
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" for="product quantity">Quantity</label>
+                <input asp-for="Quantity" type="number" class="form-control" id="productQuantity" placeholder="Enter Product Quantity">
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" for="product price">Price</label>
+                <input asp-for="Price" type="number" class="form-control" id="productPrice" placeholder="Enter Product Price" step="0.01">
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" for="select image">Image select</label>
+                <select asp-for="Image" class="form-control" id="imageSelect">
+                    <option value="https://img.icons8.com/dusk/20/000000/motherboard.png">Mother board</option>
+                    <option value="https://img.icons8.com/nolan/20/processor.png">Processor</option>
+                    <option value="https://img.icons8.com/plasticine/20/000000/computer-ram.png">RAM</option>
+                    <option value="https://img.icons8.com/officel/20/000000/hdd.png">HDD</option>
+                    <option value="https://img.icons8.com/officel/20/000000/computer.png">Case</option>
+                    <option value="https://img.icons8.com/dusk/20/000000/audio-wave-2.png">Other components</option>
+                </select>
+                
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </fieldset>
+    </form>
+    <hr />
+    <div>
+        <a href="/home/index">&larr; Back to List Of Items</a>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,34 @@
+﻿@model Orders.Models.PagedFilteredSortedResult<ItemModel>
+@{
+    var currentElementIndex = int.Parse(Model.CurrentElementIndex);
+}
+
+<td>
+    <form id="form"
+          action="/home/InlineEdit?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue" 
+          method="post">
+    </form>
+</td>
+<td><input class="form-control mw-30" form="form" type="number" name="ID" value="@Model.Items.ToList()[currentElementIndex].ID" readonly /></td>
+<td><input class="form-control mw-30" form="form" type="number" name="ProductCode" value="@Model.Items.ToList()[currentElementIndex].ProductCode" /></td>
+<td><input class="form-control w-auto" form="form" type="text" name="Name" value="@Model.Items.ToList()[currentElementIndex].Name" /></td>
+<td><input class="form-control mw-30" form="form" type="number" name="Quantity" value="@Model.Items.ToList()[currentElementIndex].Quantity" /></td>
+<td><input class="form-control mw-30" form="form" type="number" name="Price" value="@Model.Items.ToList()[currentElementIndex].Price" step="0.01"/></td>
+@{ 
+    var type = Model.Items.ToList()[currentElementIndex].Price.GetType();
+}
+<td>
+    <select form="form" class="form-control" id="imageSelect" name="Image" asp-for="Items.ToList()[currentElementIndex].Image">
+        <option value="https://img.icons8.com/dusk/20/000000/motherboard.png">Mother board</option>
+        <option value="https://img.icons8.com/nolan/20/processor.png">Processor</option>
+        <option value="https://img.icons8.com/plasticine/20/000000/computer-ram.png">RAM</option>
+        <option value="https://img.icons8.com/officel/20/000000/hdd.png">HDD</option>
+        <option value="https://img.icons8.com/officel/20/000000/computer.png">Case</option>
+        <option value="https://img.icons8.com/dusk/20/000000/audio-wave-2.png">Other components</option>
+    </select>
+</td>
+<td>
+    <button form="form" type="submit" class="btn btn-group-sm btn-outline-primary">Update</button>
+    <a href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&currentPage=@Model.CurrentPage" class="btn btn-group-sm btn-outline-danger">Cancel</a>
+</td>
+
