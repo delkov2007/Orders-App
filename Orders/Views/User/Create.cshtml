@@ -1,0 +1,16 @@
+﻿@model Orders.Models.User.CreatePost
+
+@{ 
+    ViewData["Title"] = "Create Image";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+    <div>
+        <form asp-action="Create" enctype="multipart/form-data">
+
+            <input asp-for="ImageCaption" />
+            <input asp-for="ImageDescription" />
+            <input asp-for="MyImage" />
+
+            <input type="submit" />
+        </form>
+    </div>

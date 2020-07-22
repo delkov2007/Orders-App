@@ -55,8 +55,16 @@ namespace Orders
             {
                 endpoints.MapControllerRoute(
                     name: "default",
+                    pattern: "{controller=User}/{action=LogIn}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "AdminUser",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

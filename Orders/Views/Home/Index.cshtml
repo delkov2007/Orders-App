@@ -28,8 +28,6 @@
 
     }
 
-    var startIndex = 1;
-
 
     int[] pages = new int[] { 5, 10, 20, 50 };
 }
@@ -67,6 +65,9 @@
                 <form class="form-inline" action="/" method="get">
                     <button class="btn btn-sm btn-danger" @(string.IsNullOrEmpty(Model.FilterValue) ? "hidden" : "")>Clear Filter</button>
                 </form>
+            </div>
+            <div class="col-auto">
+
             </div>
             <div class="col-auto">
                 <a href="/home/iteminfo" class="btn btn-outline-info">Add new Item</a>
@@ -143,7 +144,7 @@
                     }
                     else
                     {
-                        <partial name="InlineEdit" />
+                        <partial name="_InlineEditPartial" />
                     }
 
 

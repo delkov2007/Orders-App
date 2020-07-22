@@ -13,9 +13,6 @@ namespace Orders.Models
         public IEnumerable<T> Items { get; set; }
         public string FilterValue { get; set; }
         public string CurrentElementIndex { get; set; }
-       
-       
-        
 
     }
 }

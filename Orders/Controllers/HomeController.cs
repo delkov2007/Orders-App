@@ -68,6 +68,7 @@ namespace Orders.Controllers
         public IActionResult InlineEdit(ItemModel model, string sortBy, string sortDir, int itemsPerPage, int currentPage, string filterValue)
         {
             _services.EditOrAddItem(model);
+
             String path = String.Format(@"/home/index?sortBy={0}&sortDir={1}&itemsPerPage={2}&currentPage={3}&filterValue={4}",sortBy, sortDir, itemsPerPage, currentPage, filterValue);
             return Redirect(path);
         }
