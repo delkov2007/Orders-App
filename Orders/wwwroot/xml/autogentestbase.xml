@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-16"?>
 <ArrayOfItemModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ItemModel>
     <ID>1</ID>
     <ProductCode>100254</ProductCode>
     <Name>Mother board NVidia 5.0 v2.0.01</Name>
     <Quantity>10</Quantity>
-    <Price>99.99</Price>
+    <Price>149.99</Price>
     <Image>https://img.icons8.com/dusk/20/000000/motherboard.png</Image>
   </ItemModel>
   <ItemModel>
@@ -119,14 +119,6 @@
     <Quantity>5</Quantity>
     <Price>90</Price>
     <Image>https://img.icons8.com/officel/20/000000/computer.png</Image>
-  </ItemModel>
-  <ItemModel>
-    <ID>2010036107</ID>
-    <ProductCode>200365</ProductCode>
-    <Name>ATI Wonder 4bg</Name>
-    <Quantity>5</Quantity>
-    <Price>255</Price>
-    <Image>https://img.icons8.com/dusk/20/000000/audio-wave-2.png</Image>
   </ItemModel>
   <ItemModel>
     <ID>325048927</ID>

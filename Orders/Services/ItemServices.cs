@@ -12,12 +12,13 @@ namespace Orders.Services
 {
     public class ItemServices : IItemServices
     {
-        public  IEnumerable<ItemModel> ReadFromXml(string path = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
+        public  List<ItemModel> ReadFromXml(string path = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
         {
             var reader = new StreamReader(path);
             string dataSource = reader.ReadToEnd();
+            reader.Close();
 
-            return dataSource.DeserializeToObject<List<ItemModel>>();
+            return dataSource.DeserializeToObject<List<ItemModel>>().ToList();
         }
         public void WriteToXml(List<ItemModel> list, string path = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
         {
@@ -26,15 +27,16 @@ namespace Orders.Services
             if (File.Exists(path))
             {
                 File.WriteAllText(path, updatedDataSource);
+           
             }
 
         }
         public void EditOrAddItem(ItemModel model)
         {
-            IEnumerable<ItemModel> itemsList = ReadFromXml();
-            itemsList = itemsList.Where(el => el.ID == model.ID);
+            List<ItemModel> itemsList = ReadFromXml();
+            
 
-            if(itemsList.ToList().Count==0)
+            if(itemsList.Where(el => el.ID == model.ID).ToList().Count==0)
             {
                 itemsList.Append(new ItemModel
                 {
@@ -49,71 +51,48 @@ namespace Orders.Services
             }
             else
             {
-                itemsList.FirstOrDefault<ItemModel>().dasdas
-            }
-            XDocument record = new XDocument();////
-
-            var elements = record.Root
-                .Descendants("Item")
-                .Where(t => t.Element("ID").Value == model.ID);
-
-            if (!(elements.ToList().Count == 0))
-            {
-
-                foreach (var element in elements)
+                var index = itemsList.FindIndex(e => e.ID == model.ID);
+                itemsList[index] = new ItemModel
                 {
-                    element.SetElementValue("ProductCode", model.ProductCode.ToString());
-                    element.SetElementValue("Name", model.Name);
-                    element.SetElementValue("Quantity", model.Quantity.ToString());
-                    element.SetElementValue("Price", model.Price);
-                    element.SetElementValue("Image", model.Image);
-                }
-            }
-            else
-            {
-                XElement newElement = new XElement("Item",
-                    new XElement[]
-                    {
-                        new XElement("ID", model.ID),
-                        new XElement("ProductCode", model.ProductCode.ToString()),
-                        new XElement("Name", model.Name),
-                        new XElement("Quantity", model.Quantity.ToString()),
-                        new XElement("Price", model.Price.ToString()),
-                        new XElement("Image", model.Image)
-                    }
-                );
+                    ID = model.ID,
+                    ProductCode = model.ProductCode,
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    Price = model.Price,
+                    Image = model.Image
 
-                record.Root.Add(newElement);
-
+                };
             }
 
-            record.Save(@"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\testbase.xml");
+            WriteToXml(itemsList);
 
         }
         public ItemModel ItemInfo(string id)
         {
-            var model = new ItemModel 
-            { 
-                ID = Math.Abs(DateTime.Now.GetHashCode()).ToString() 
-            };
+            IEnumerable<ItemModel> itemList = ReadFromXml();
+            ItemModel model;
+            if (string.IsNullOrEmpty(id))
+            {
+                model = new ItemModel
+                {
+                    ID = Math.Abs(DateTime.Now.GetHashCode()).ToString()
+                };
+            }   
 
-            //if (!string.IsNullOrEmpty(id))
-                //model =  GetDataResult(id).First();
+            model = itemList.Where(item => item.ID.Equals(id)).ToList().FirstOrDefault();
 
             return model;
         }
         public void DeleteItem(string id)
         {
-            XDocument dataResult = new XDocument();///
-            var elementForRemove = from element in dataResult.Elements("Items").Elements("Item")
-                                   where element.Element("ID").Value == id
-                                   select element;
-            foreach (var el in elementForRemove)
-            {
-                el.Remove();
-            }
+            List<ItemModel> itemsList = ReadFromXml().ToList();
 
-            dataResult.Save(@"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\testbase.xml");
+            var index = itemsList.FindIndex(e => e.ID == id);
+
+            itemsList.RemoveAt(index);
+
+            WriteToXml(itemsList);
+
         }
         public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int itemsPerPage = 5, string filterValue = "", string currentLine=null)
         {

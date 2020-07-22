@@ -31,6 +31,7 @@ namespace Orders.Services
                 serToXml.Serialize(textWriter, model);
                 return textWriter.ToString();
             }
+            
         }
 
     }
