@@ -1,4 +1,5 @@
 ﻿using GemBox.Spreadsheet;
+using Orders.Helpers;
 using Orders.Models;
 using System;
 using System.Collections.Generic;
@@ -10,33 +11,15 @@ using System.Xml.Linq;
 
 namespace Orders.Services
 {
-    public class ItemServices : IItemServices
+    public class AdminServices : IAdminServices
     {
-        public  List<ItemModel> ReadFromXml(string path = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
-        {
-            var reader = new StreamReader(path);
-            string dataSource = reader.ReadToEnd();
-            reader.Close();
-
-            return dataSource.DeserializeToObject<List<ItemModel>>().ToList();
-        }
-        public void WriteToXml(List<ItemModel> list, string path = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
-        {
-            var updatedDataSource = list.SerializeToXml<List<ItemModel>>();
-            
-            if (File.Exists(path))
-            {
-                File.WriteAllText(path, updatedDataSource);
-           
-            }
-
-        }
         public void EditOrAddItem(ItemModel model)
         {
-            List<ItemModel> itemsList = ReadFromXml();
-            
+            string xmlPath = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml";
+            List<ItemModel> itemsList = XmlHelper.ReadFromXml<ItemModel>(xmlPath);
 
-            if(itemsList.Where(el => el.ID == model.ID).ToList().Count==0)
+
+            if (itemsList.Where(el => el.ID == model.ID).ToList().Count == 0)
             {
                 itemsList.Append(new ItemModel
                 {
@@ -64,39 +47,44 @@ namespace Orders.Services
                 };
             }
 
-            WriteToXml(itemsList);
+            XmlHelper.WriteToXml(itemsList,xmlPath);
 
         }
         public ItemModel ItemInfo(string id)
         {
-            IEnumerable<ItemModel> itemList = ReadFromXml();
+            string xmlPath = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml";
+            IEnumerable<ItemModel> itemList = XmlHelper.ReadFromXml<ItemModel>(xmlPath);
             ItemModel model;
             if (string.IsNullOrEmpty(id))
             {
                 model = new ItemModel
                 {
-                    ID = Math.Abs(DateTime.Now.GetHashCode()).ToString()
+                    ID = DateTime.UtcNow.Ticks.ToString()
                 };
-            }   
-
-            model = itemList.Where(item => item.ID.Equals(id)).ToList().FirstOrDefault();
+            }
+            else
+            {
+                model = itemList.Where(item => item.ID.Equals(id)).ToList().FirstOrDefault();
+            }
 
             return model;
         }
         public void DeleteItem(string id)
         {
-            List<ItemModel> itemsList = ReadFromXml().ToList();
+            string xmlPath = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml";
+            List<ItemModel> itemsList = XmlHelper.ReadFromXml<ItemModel>(xmlPath).ToList();
 
             var index = itemsList.FindIndex(e => e.ID == id);
 
             itemsList.RemoveAt(index);
 
-            WriteToXml(itemsList);
+            XmlHelper.WriteToXml(itemsList, xmlPath);
 
         }
-        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int itemsPerPage = 5, string filterValue = "", string currentLine=null)
+        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int itemsPerPage = 5, string filterValue = "", string currentLine = null)
         {
-            IEnumerable<ItemModel> data = ReadFromXml();
+            string xmlPath = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml";
+            IEnumerable<ItemModel> data = XmlHelper.ReadFromXml<ItemModel>(xmlPath);
 
             if (string.IsNullOrEmpty(filterValue))
             {
@@ -113,9 +101,9 @@ namespace Orders.Services
                     || x.Price.ToLower().Contains(filterValue)
                     || x.Quantity.ToString().ToLower().Contains(filterValue));
             }
-            
+
             Func<ItemModel, object> order = x => x.ID;
-            
+
             switch (sortBy.ToLower())
             {
                 case "id":
@@ -139,7 +127,7 @@ namespace Orders.Services
                     break;
             }
 
-            
+
             data = (sortDir == "asc")
                 ? data.OrderBy(order)
                 : data.OrderByDescending(order);
@@ -159,8 +147,8 @@ namespace Orders.Services
             model.CurrentPage = model.CurrentPage > model.TotalPages ? model.TotalPages : currentPage;
             model.Items = data.Skip((model.CurrentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
             model.CurrentElementIndex = currentLine;
-            
-            
+
+
             return model;
         }
         public string ExportToXLS(PagedFilteredSortedResult<ItemModel> model)
@@ -171,9 +159,9 @@ namespace Orders.Services
             var workSheet = exportFile.Worksheets.Add("Exported data");
             var dataTable = new DataTable();
             var objModel = model.Items.ToList()[0];
-            
 
-            
+
+
 
             foreach (var prop in objModel.GetType().GetProperties())
             {
@@ -183,7 +171,7 @@ namespace Orders.Services
 
             foreach (var item in model.Items)
             {
-                dataTable.Rows.Add(new object[] { item.ID, item.ProductCode, item.Name, item.Quantity, item.Price, item.Image});
+                dataTable.Rows.Add(new object[] { item.ID, item.ProductCode, item.Name, item.Quantity, item.Price, item.Image });
             }
 
             workSheet.InsertDataTable(dataTable,
@@ -205,10 +193,5 @@ namespace Orders.Services
             return path;
         }
 
-
     }
-
-
-
-    
 }

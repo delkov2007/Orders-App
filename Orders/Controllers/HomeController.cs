@@ -10,10 +10,10 @@ namespace Orders.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IItemServices _services;
+        private readonly IAdminServices _services;
 
 
-        public HomeController(IItemServices currentServices)
+        public HomeController(IAdminServices currentServices)
         {
             _services = currentServices;
         }

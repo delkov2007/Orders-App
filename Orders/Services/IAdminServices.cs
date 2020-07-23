@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Orders.Services
 {
-    public interface IItemServices
-    {
-        public List<ItemModel> ReadFromXml(string path);
-        public void WriteToXml(List<ItemModel> list, string path);
+    public interface IAdminServices
+    { 
 
         public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int pageSize = 4, string filterValue = "", string currentLine = null);
 

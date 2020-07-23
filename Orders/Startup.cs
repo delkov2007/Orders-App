@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Orders.Services;
-using ReflectionIT.Mvc.Paging;
 
 namespace Orders
 {
@@ -26,7 +25,8 @@ namespace Orders
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IItemServices,ItemServices>();
+            services.AddTransient<IAdminServices,AdminServices>();
+            services.AddTransient<IUserService, UserService>();
             
             
         }
@@ -64,7 +64,14 @@ namespace Orders
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "CreateUser",
+                    pattern: "{controller=User}/{action=Create}/{id?}");
+            });
+
+
         }
     }
 }

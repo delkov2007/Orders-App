@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Orders.Models.User
 {
-    public class LoginViewModel
+    public class CredentialsModel
     {
-        public int UserID = -1;
-        public CredentialsModel Credentials { get; set; }
+        public string Username { get; set; }
 
+        public string Password { get; set; }
     }
 }

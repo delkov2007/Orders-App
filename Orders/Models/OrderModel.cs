@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Orders.Models.User
+namespace Orders.Models
 {
-    public class OrdersViewModel
+    public class OrderModel
     {
     }
 }

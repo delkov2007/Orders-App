@@ -6,44 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Orders.Models.User;
+using Orders.Services;
 
 namespace Orders.Controllers
 {
     public class UserController : Controller
     {
         private readonly IHostEnvironment hostingEnvironment;
-        public UserController(IHostEnvironment environment)
+        private readonly IUserService _userService;
+        public UserController(IHostEnvironment environment, IUserService userService)
         {
             hostingEnvironment = environment;
+            _userService = userService;
         }
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult CreateUser()
         {
-            return View();
+            UserViewModel newUser = new UserViewModel();
+            return View(newUser);
         }
         [HttpPost]
-        public IActionResult Create(CreatePost model)
+        public IActionResult CreateUser(UserViewModel model)
         {
-            if (model.MyImage != null)
-            {
-                var uniqueFileName = GetUniqueFileName(model.MyImage.FileName);
-                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "wwwroot/uploads");
-                var filePath = Path.Combine(uploads, uniqueFileName);
-                model.MyImage.CopyTo(new FileStream(filePath, FileMode.Create));
+            _userService.ForgeUserModel(model, hostingEnvironment);
+            
 
-                //to do : Save uniqueFileName  to your db table   
-            }
-            // to do  : Return something
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("LogIn", "User");
         }
 
-        private string GetUniqueFileName(string fileName)
-        {
-            fileName = Path.GetFileName(fileName);
-            return Path.GetFileNameWithoutExtension(fileName)
-                      + "_"
-                      + Guid.NewGuid().ToString().Substring(0, 4)
-                      + Path.GetExtension(fileName);
-        }
+       
 
 
 
@@ -52,10 +43,16 @@ namespace Orders.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult LogIn()
         {
-            return View();
+            LoginViewModel login = new LoginViewModel
+            {
+                UserID = -1,
+                Credentials = new CredentialsModel()
+            };
+
+            return View(login);
         }
     }
 }
