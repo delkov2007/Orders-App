@@ -9,6 +9,10 @@ namespace Orders.Services
 {
     public interface IUserService
     {
-        public void ForgeUserModel(UserViewModel model, IHostEnvironment hostingEnvironment);
+        public void PushUserToXML(UserViewModel model, IHostEnvironment hostingEnvironment);
+        public string GetUserID(LoginViewModel login);
+        public UserViewModel ForgeUser(UserViewModel model);
+        public UserViewModel PullUserFromXML(string userId);
+
     }
 }

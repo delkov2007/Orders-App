@@ -28,31 +28,45 @@ namespace Orders.Controllers
         [HttpPost]
         public IActionResult CreateUser(UserViewModel model)
         {
-            _userService.ForgeUserModel(model, hostingEnvironment);
+            _userService.PushUserToXML(model, hostingEnvironment);
             
 
             return RedirectToAction("LogIn", "User");
         }
 
-       
-
-
-
-
-        public IActionResult Index()
+        public IActionResult Index(string userId)
         {
-            return View();
+            UserViewModel loggedUser = _userService.PullUserFromXML(userId);
+
+            return View(loggedUser);
+        }
+        [HttpPost]
+        public IActionResult Index(UserViewModel model)
+        {
+            return View(model);
         }
         [HttpGet]
-        public IActionResult LogIn()
+        public IActionResult LogIn(int statusOfLogging=-1)
         {
             LoginViewModel login = new LoginViewModel
             {
-                UserID = -1,
-                
+                StatusOfLogging = statusOfLogging
             };
 
             return View(login);
+        }
+        [HttpPost]
+        public IActionResult LogIn(LoginViewModel model)
+        {
+            string userId = _userService.GetUserID(model);
+            
+            if (userId == null)
+            {
+                model.StatusOfLogging = 0;
+                return Redirect("/user/LogIn?statusoflogging="+model.StatusOfLogging);
+            }
+
+            return Redirect("/user/index?userId=" + userId);
         }
     }
 }

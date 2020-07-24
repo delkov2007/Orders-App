@@ -7,7 +7,7 @@ namespace Orders.Models.User
 {
     public class LoginViewModel
     {
-        public int UserID = -1;
+        public int StatusOfLogging = -1;
         public string Username { get; set; }
         public string Password { get; set; }
 

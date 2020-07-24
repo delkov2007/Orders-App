@@ -1,19 +1,19 @@
-﻿    <!-- Page Content -->
+﻿@model Orders.Models.User.UserViewModel;
+
+    @Html.Partial("_navbar", Model)
+ 
     <div class="container">
-
         <div class="row">
-
             <div class="col-lg-3">
-
                 <h1 class="my-4">Computer Store</h1>
                 <div class="list-group">
                     <a href="#" class="list-group-item">Processors</a>
                     <a href="#" class="list-group-item">Category 2</a>
                     <a href="#" class="list-group-item">Category 3</a>
                 </div>
-
+ 
             </div>
-            <!-- /.col-lg-3 -->
+           
 
             <div class="col-lg-9">
 
@@ -154,27 +154,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.col-lg-9 -->
-
         </div>
-        <!-- /.row -->
-
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-        </div>
-        <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
+    
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
