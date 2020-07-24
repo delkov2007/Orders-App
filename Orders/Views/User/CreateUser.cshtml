@@ -1,5 +1,6 @@
 ﻿@model Orders.Models.User.UserViewModel
 
+
 @{
     ViewData["Title"] = "Create Image";
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -10,7 +11,7 @@
 }
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-@*enctype="multipart/form-data"*@
+
 
 <div class="container">
     <br>
@@ -19,15 +20,15 @@
             <article class="card-body">
                 <h4 class="card-title mb-4 mt-1">Sign up</h4>
                 <hr />
-                <form asp-action="createuser" method="post">
+                <form asp-action="createuser" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="username">Your username</label>
-                        <input asp-for="@Model.Credentials.Username" name="@Model.Credentials.Username" id="username" class="form-control" placeholder="Username" type="text">
-                    </div> <!-- form-group// -->
+                        <label for="username">Username</label>
+                        <input asp-for="Username" name="Username" id="username" class="form-control" placeholder="Username" type="text">
+                    </div>
                     <div class="form-group">
-                        <label for="password">Your password</label>
-                        <input asp-for="@Model.Credentials.Password" name="@Model.Credentials.Password" id="password" class="form-control" placeholder="******" type="password">
-                    </div> <!-- form-group// -->
+                        <label for="pastword">Password</label>
+                        <input asp-for="Password" name="Password" id="password" class="form-control" placeholder="********" type="password">
+                    </div>
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input asp-for="FirstName" name="FirstName" id="firstname" class="form-control" placeholder="First Name" type="text">
@@ -50,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-dark btn-block" />
-                    </div> <!-- form-group// -->
+                    </div>
                 </form>
             </article>
         </div>

@@ -49,7 +49,7 @@ namespace Orders.Controllers
             LoginViewModel login = new LoginViewModel
             {
                 UserID = -1,
-                Credentials = new CredentialsModel()
+                
             };
 
             return View(login);

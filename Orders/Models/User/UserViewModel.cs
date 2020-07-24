@@ -8,7 +8,8 @@ namespace Orders.Models.User
     {
         public string ID { get; set; }
 
-        public CredentialsModel Credentials = new CredentialsModel() { Username = "", Password = ""};
+        public string Username { get; set; }
+        public string Password { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,6 +19,7 @@ namespace Orders.Models.User
         public string UserPictureFilePath { get; set; }
         public bool IsLogged { get; set; }
         public bool IsAdmin { get; set; }
+        [XmlIgnore]
         public List<OrderModel> OrdersList { get; set; }
         public List<ItemModel> ItemsList { get; set; }
 

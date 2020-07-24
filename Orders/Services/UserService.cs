@@ -13,50 +13,55 @@ namespace Orders.Services
 {
     public class UserService : IUserService
     {
-        private string ForgeUniqueUserImageFileName (string filename, UserViewModel model)
+        private string ForgeUniqueUserImageFileName (string filename, UserViewModel user)
         {
-            filename = Path.GetFileName(filename);
-            string uniqueFileName = Path.GetFileNameWithoutExtension(filename)
+            
+            filename = Path.GetFullPath(filename);
+            return Path.GetFileNameWithoutExtension(filename)
                 + "_"
-                + model.ID
+                + user.ID
                 + "_"
-                + model.FirstName
+                + user.FirstName
                 + "_"
-                + model.LastName
+                + user.LastName
                 + Path.GetExtension(filename);
-            return uniqueFileName;
+            
         }
         public void ForgeUserModel(UserViewModel model, IHostEnvironment hostingEnvironment)
         {
-            List<UserViewModel> listOfUsers = new List<UserViewModel>();
+            List<UserViewModel> listOfUsers = Helpers.XmlHelper.ReadFromXml<UserViewModel>(@"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\userdatabase.xml")
+                ?? new List<UserViewModel>();
 
             string filePath = "";
 
-            if (model.UserPicture != null)
-            {
-                var uniqueFileName = ForgeUniqueUserImageFileName(model.UserPicture.FileName, model);
-                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "wwwroot/uploads");
-                filePath = Path.Combine(uploads, uniqueFileName);
-                var fs = new FileStream(filePath, FileMode.Open);
-                model.UserPicture.CopyTo(fs);
-                fs.Close();
-            }
+            
             UserViewModel newUser = new UserViewModel()
             {
-                ID = Guid.NewGuid().ToString(),
-                Credentials = { Username = model.Credentials.Username, Password = model.Credentials.Password },
+                ID = Guid.NewGuid().ToString().Substring(0,6),
+                Username = model.Username,
+                Password = model.Password,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Age = model.Age,
                 Email = model.Email,
-                UserPictureFilePath = filePath,
                 IsAdmin = false,
                 IsLogged = false,
                 OrdersList = new List<OrderModel>(),
                 ItemsList = Helpers.XmlHelper.ReadFromXml<ItemModel>(@"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml")
             };
 
-            listOfUsers.Append(newUser);
+            if (model.UserPicture != null)
+            {
+                var uniqueFileName = ForgeUniqueUserImageFileName(model.UserPicture.FileName, newUser);
+                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "wwwroot/uploads");
+                filePath = Path.Combine(uploads, uniqueFileName);
+                var fs = new FileStream(filePath, FileMode.CreateNew);
+                model.UserPicture.CopyTo(fs);
+                fs.Close();
+            }
+            newUser.UserPictureFilePath = filePath;
+
+            listOfUsers.Add(newUser);
             XmlHelper.WriteToXml(listOfUsers, @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\userdatabase.xml");
 
         }
