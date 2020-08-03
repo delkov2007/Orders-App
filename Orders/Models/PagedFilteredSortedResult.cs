@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Orders.Models.User;
+using System.Collections.Generic;
 
 namespace Orders.Models
 {
@@ -9,10 +10,11 @@ namespace Orders.Models
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }
         public int Count { get; set; }
-        public int TotalPages { get; set; } 
+        public int TotalPages { get; set; }
         public IEnumerable<T> Items { get; set; }
         public string FilterValue { get; set; }
         public string CurrentElementIndex { get; set; }
+        public UserViewModel Admin {get; set;}
 
     }
 }

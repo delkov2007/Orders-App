@@ -31,6 +31,7 @@
 
     int[] pages = new int[] { 5, 10, 20, 50 };
 }
+@Html.Partial("_navbar", Model.Admin)
 
 <div class="m-2 container">
     <div class="container">
@@ -54,6 +55,7 @@
                     @Html.HiddenFor(x => x.SortDir)
                     @Html.HiddenFor(x => x.ItemsPerPage)
                     @Html.HiddenFor(x => x.CurrentPage)
+                    @Html.HiddenFor(x => x.Admin.ID)
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">Search</div>
@@ -62,9 +64,9 @@
                         <button class="btn btn-outline-info d-inline-flex" type="submit">Search</button>
                     </div>
                 </form>
-                <form class="form-inline" action="/home/index" method="get">
-                    <button class="btn btn-sm btn-danger" @(string.IsNullOrEmpty(Model.FilterValue) ? "hidden" : "")>Clear Filter</button>
-                </form>
+                <div class="col-auto mr-auto p-1">
+                    <a href="/home/index?userId=@Model.Admin.ID" class="btn btn-sm btn-danger" @(string.IsNullOrEmpty(Model.FilterValue) ? "hidden" : "")>Clear Filter</a>
+                </div>
             </div>
             <div class="col-auto">
 
@@ -80,31 +82,31 @@
             <tr>
                 <th></th>
                 <th scope="col">
-                    <a href="/Home/Index?sortBy=id&sortDir=@ForgeSortDir("id")&filterValue=@Model.FilterValue">
+                    <a href="/Home/Index?sortBy=id&sortDir=@ForgeSortDir("id")&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">
                         ID
                         <img @CheckSortBySortDir(Model.SortBy, Model.SortDir, "id") />
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/Home/Index?sortBy=productcode&sortDir=@ForgeSortDir("productcode")&filterValue=@Model.FilterValue">
+                    <a href="/Home/Index?sortBy=productcode&sortDir=@ForgeSortDir("productcode")&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">
                         Product Code
                         <img @CheckSortBySortDir(Model.SortBy, Model.SortDir, "productcode") />
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/Home/Index?sortBy=name&sortDir=@ForgeSortDir("name")&filterValue=@Model.FilterValue">
+                    <a href="/Home/Index?sortBy=name&sortDir=@ForgeSortDir("name")&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">
                         Name
                         <img @CheckSortBySortDir(Model.SortBy, Model.SortDir, "name") />
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/Home/Index?sortBy=quantity&sortDir=@ForgeSortDir("quantity")&filterValue=@Model.FilterValue">
+                    <a href="/Home/Index?sortBy=quantity&sortDir=@ForgeSortDir("quantity")&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">
                         Quantity
                         <img @CheckSortBySortDir(Model.SortBy, Model.SortDir, "quantity") />
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/Home/Index?sortBy=price&sortDir=@ForgeSortDir("price")&filterValue=@Model.FilterValue">
+                    <a href="/Home/Index?sortBy=price&sortDir=@ForgeSortDir("price")&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">
                         Price
                         <img @CheckSortBySortDir(Model.SortBy, Model.SortDir, "price") />
                     </a>
@@ -134,7 +136,7 @@
                         <td>@item.Price</td>
                         <td><img height="24" width="24" src="@item.Image" /></td>
                         <td>
-                            <a href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&currentline=@selectedElementIndex"
+                            <a href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID&currentline=@selectedElementIndex"
                                class="btn btn-group-sm btn-outline-light">
                                 Inline Edit
                             </a>
@@ -174,9 +176,9 @@
                 <ul class="pagination">
                     <li class="page-item @(Model.CurrentPage==1 ? "disabled" : "")">
                         <a class="page-link"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@(Model.CurrentPage-1)&filterValue=@Model.FilterValue">Previous</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@(Model.CurrentPage-1)&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">Previous</a>
                     </li>
-                    
+
                     @for (var i = 1; i <= Model.TotalPages; i++)
                     {
                         <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
@@ -185,13 +187,14 @@
                                asp-route-currentpage="@i"
                                asp-route-itemsperpage="@Model.ItemsPerPage"
                                asp-route-filterValue="@Model.FilterValue"
+                               asp-route-userid="@Model.Admin.ID"
                                class="page-link">@i</a>
                         </li>
                     }
-                    
+
                     <li class="page-item @(Model.CurrentPage>=Model.TotalPages? "disabled" : "")">
                         <a class="page-link"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@(Model.CurrentPage+1)&filterValue=@Model.FilterValue">Next</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@(Model.CurrentPage+1)&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">Next</a>
                     </li>
                 </ul>
             </div>
@@ -207,13 +210,13 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[0]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue">5</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[0]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">5</a>
                         <a class="dropdown-item"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[1]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue">10</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[1]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">10</a>
                         <a class="dropdown-item"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[2]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue">20</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[2]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">20</a>
                         <a class="dropdown-item"
-                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[3]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue">50</a>
+                           href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@pages[3]&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID">50</a>
 
                     </div>
                 </div>

@@ -1,39 +1,80 @@
 ﻿@model Orders.Models.User.UserViewModel;
+<!--
+<header>
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
+    <div class="container">
+        <a class="navbar-brand text-white"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+               
 
-    <header>
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
-            <div class="container">
-                <a class="navbar-brand text-white">csparts.bg</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        @if (Model.IsAdmin)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-action="Index" asp-controller="Home">Admin</a>
-                            </li>
-                        }
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+-->
+<header>
+    <!--Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
+        <a class="navbar-brand" href="#">CSParts.bg</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul id="nav" class="navbar-nav mr-auto">
+                <li id="store" class="nav-item active">
+                    <a class="nav-link" href="#">Store</a>
+                </li>
+                <li id="orders" class="nav-item">
+                    <a class="nav-link" href="#">Orders</a>
+                </li>
+                <li id="contacts" class="nav-item">
+                    <a class="nav-link" href="#">Contacts</a>
+                </li>
+                @if (Model.IsAdmin)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/index?userId=@Model.ID">Admin</a>
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="@Model.UserPictureFilePath" class="rounded-circle z-depth-0"
+                             alt="avatar image" height="35">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="navbarDropdownMenuLink-333">
+                        <a class="dropdown-item" href="#">User Profile</a>
+                        <a class="dropdown-item" href="#">Orders</a>
+                        <a class="dropdown-item" asp-controller="User" asp-action="LogIn">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--/.Navbar -->

@@ -9,7 +9,7 @@ namespace Orders.Services
     public interface IAdminServices
     { 
 
-        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int pageSize = 4, string filterValue = "", string currentLine = null);
+        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int pageSize = 4, string filterValue = "", string userId = "", string currentLine = null);
 
 
         public void EditOrAddItem(ItemModel model);

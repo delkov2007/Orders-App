@@ -81,7 +81,7 @@ namespace Orders.Services
             XmlHelper.WriteToXml(itemsList, xmlPath);
 
         }
-        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int itemsPerPage = 5, string filterValue = "", string currentLine = null)
+        public PagedFilteredSortedResult<ItemModel> ForgePageSortFilterResult(string sortBy = "id", string sortDir = "asc", int currentPage = 1, int itemsPerPage = 5, string filterValue = "", string userId = "",string currentLine = null)
         {
             string xmlPath = @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\autogentestbase.xml";
             IEnumerable<ItemModel> data = XmlHelper.ReadFromXml<ItemModel>(xmlPath);
@@ -147,6 +147,7 @@ namespace Orders.Services
             model.CurrentPage = model.CurrentPage > model.TotalPages ? model.TotalPages : currentPage;
             model.Items = data.Skip((model.CurrentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
             model.CurrentElementIndex = currentLine;
+            model.Admin = new UserService().PullUserFromXML(userId);
 
 
             return model;

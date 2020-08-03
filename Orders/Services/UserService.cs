@@ -17,9 +17,7 @@ namespace Orders.Services
         {
             
             filename = Path.GetFullPath(filename);
-            return Path.GetFileNameWithoutExtension(filename)
-                + "_"
-                + user.ID
+            return user.ID
                 + "_"
                 + user.FirstName
                 + "_"
@@ -43,8 +41,9 @@ namespace Orders.Services
                 var fs = new FileStream(filePath, FileMode.CreateNew);
                 model.UserPicture.CopyTo(fs);
                 fs.Close();
+                newUser.UserPictureFilePath = "/uploads/" + uniqueFileName;
             }
-            newUser.UserPictureFilePath = filePath;
+            
 
             listOfUsers.Add(newUser);
             XmlHelper.WriteToXml(listOfUsers, @"C:\Users\HP\source\repos\Orders\Orders\wwwroot\xml\userdatabase.xml");

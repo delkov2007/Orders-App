@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    ViewData["adminId"] = "8a94d6";
 }
 
 @{ 
@@ -49,7 +50,7 @@
     </form>
     <hr />
     <div>
-        <a href="/home/index">&larr; Back to List Of Items</a>
+        <a href="/home/index?userId=@ViewData["adminId"]">&larr; Back to List Of Items</a>
     </div>
 </div>
 

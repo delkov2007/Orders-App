@@ -19,10 +19,10 @@ namespace Orders.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string sortBy = "id", string sortDir = "asc", int itemsPerPage = 5, int currentPage = 1, string filterValue = "", string currentLine=null)
+        public IActionResult Index(string sortBy = "id", string sortDir = "asc", int itemsPerPage = 5, int currentPage = 1, string filterValue = "",string userId="", string currentLine=null)
         {
             
-            PagedFilteredSortedResult<ItemModel> model = _services.ForgePageSortFilterResult(sortBy, sortDir,currentPage,itemsPerPage,filterValue,currentLine);
+            PagedFilteredSortedResult<ItemModel> model = _services.ForgePageSortFilterResult(sortBy, sortDir,currentPage,itemsPerPage,filterValue,userId,currentLine);
             
 
             return View(model);
@@ -31,7 +31,7 @@ namespace Orders.Controllers
         [HttpPost]
         public IActionResult Index(PagedFilteredSortedResult<ItemModel> model)
         {
-            PagedFilteredSortedResult<ItemModel> filteredModel = _services.ForgePageSortFilterResult(model.SortBy, model.SortDir, model.CurrentPage, model.ItemsPerPage, model.FilterValue);
+            PagedFilteredSortedResult<ItemModel> filteredModel = _services.ForgePageSortFilterResult(model.SortBy, model.SortDir, model.CurrentPage, model.ItemsPerPage, model.FilterValue,model.Admin.ID);
 
 
             return View("Index", filteredModel);
@@ -43,6 +43,7 @@ namespace Orders.Controllers
         public IActionResult ItemInfo(string id)
         {
             ItemModel model = _services.ItemInfo(id);
+            
             return View(model);
         }
         [HttpPost]

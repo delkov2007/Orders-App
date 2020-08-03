@@ -5,7 +5,7 @@
 
 <td>
     <form id="form"
-          action="/home/InlineEdit?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue" 
+          action="/home/InlineEdit?sortBy=@Model.SortBy&sortDir=@Model.SortDir&itemsPerPage=@Model.ItemsPerPage&currentPage=@Model.CurrentPage&filterValue=@Model.FilterValue&userId=@Model.Admin.ID" 
           method="post">
     </form>
 </td>
@@ -29,6 +29,6 @@
 </td>
 <td>
     <button form="form" type="submit" class="btn btn-group-sm btn-outline-primary">Update</button>
-    <a href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&currentPage=@Model.CurrentPage" class="btn btn-group-sm btn-outline-danger">Cancel</a>
+    <a href="/home/index?sortBy=@Model.SortBy&sortDir=@Model.SortDir&currentPage=@Model.CurrentPage&userId=@Model.Admin.ID" class="btn btn-group-sm btn-outline-danger">Cancel</a>
 </td>
 
